@@ -1,0 +1,109 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url('/static/bg.jpg');
+}
+
+nav {
+  background-color: #004d99;
+  color: white;
+  padding: 1rem 0;
+}
+
+.nav-class {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.label {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#ul-id {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+#ul-id li {
+  margin-left: 1.5rem;
+}
+
+#ul-id li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+#ul-id li a:hover {
+  color: #ffcc00;
+}
+
+.logo {
+  text-align: center;
+  margin: 2rem 0;
+border-radius: 50%;
+
+}
+
+.logo img {
+  width: 100px;
+  border-radius: 50%;
+}
+
+.logo label {
+  display: block;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+p {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.button-class {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.button-class button {
+  background-color: #004d99;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+}
+
+.button-class button:hover {
+  background-color: #003366;
+}
+
+@media (max-width: 768px) {
+  .nav-class {
+    flex-direction: column;
+  }
+
+  #ul-id {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #ul-id li {
+    margin: 0.5rem 0;
+  }
+
+  .label {
+    margin-bottom: 1rem;
+  }
+}
