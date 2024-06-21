@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block extra_styles %}
+  <link rel="stylesheet" href="{% static 'textSamples.css' %}">
+{% endblock %}
+
+{% block nav %}
+  {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Upload and Display Images</h1>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Upload Image</button>
+  </form>
+  <div class="image-gallery">
+    {% for image in images %}
+      <div class="image-box">
+        <img src="{{ image.image.url }}" alt="Image {{ forloop.counter }}">
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

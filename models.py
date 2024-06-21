@@ -1,14 +1,10 @@
-# from django.db import models
-
-# # Create your models here.
-# # models.py
 
 
-# class UploadedImage(models.Model):
-#     image = models.ImageField(upload_to='images/')
-#     upload_date = models.DateTimeField(auto_now_add=True)
+from django.db import models
 
-#     def __str__(self):
-#         return self.image.name
+class UploadedImage(models.Model):
+    image = models.ImageField(upload_to='uploaded_images/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
-
+    def __str__(self):
+        return f"Image uploaded on {self.uploaded_at}"

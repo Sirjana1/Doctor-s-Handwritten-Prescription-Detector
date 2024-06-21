@@ -1,0 +1,83 @@
+{% comment %} <!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Handwritten Text Detection</title>
+</head>
+<body>
+    <div>
+        <h2>Upload Image</h2>
+        <form id="uploadForm" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <input type="file" name="image" id="imageUpload" accept="image/*">
+            <button type="submit">Upload and Detect</button>
+        </form>
+    </div>
+
+    <div id="predictionResult" style="margin-top: 20px;">
+        <!-- Predicted text will be displayed here -->
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#uploadForm').submit(function(event) {
+                event.preventDefault();
+                var formData = new FormData();
+                formData.append('image', $('#imageUpload')[0].files[0]);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "predict_view" %}',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        $('#predictionResult').html('<p><strong>Predicted Text:</strong> ' + response.predicted_text + '</p>');
+                    },
+                    error: function(error) {
+                        console.log(error);
+                        alert('Error predicting text. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwriting Text Recognition</title>
+</head>
+<body>
+    <h1>Handwriting Text Recognition</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image">
+        <button type="submit">Recognize Text</button>
+    </form>
+
+    {% if predicted_text %}
+        <h2>Predicted Text:</h2>
+        <p>{{ predicted_text }}</p>
+    {% endif %}
+</body>
+</html>

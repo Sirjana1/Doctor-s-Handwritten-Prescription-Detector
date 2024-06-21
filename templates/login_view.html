@@ -23,12 +23,12 @@
       </div>
       <div class="remember-forget">
         <label><input type="checkbox" name="remember">Remember me</label>
-           {% comment %} <a href="{% url 'password_reset' %}">Forgot Password</a>  {% endcomment %}
+        {% comment %} <a href="{% url 'password_reset' %}">Forgot Password</a> {% endcomment %}
       </div>
       <button type="submit" class="btn">Login</button>
       <div class="register-link">
         <p>Don't have an account?
-          {% comment %} <a href="{% url 'register' %}">Register</a> {% endcomment %}
+          <a href="{% url 'register' %}">Register</a>
         </p>
       </div>
     </form>

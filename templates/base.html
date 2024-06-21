@@ -1,4 +1,4 @@
- {% load static %}
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,38 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HTDetector</title>
   <link rel="stylesheet" href="{% static 'style.css' %}">
+  {% block extra_styles %}
+  {% endblock %}
 </head>
 <body>
+  {% block nav %}
   <nav>
     <div class="nav-class">
       <label class="label">RTD</label>
       <ul id="ul-id">
         <li><a href="/">Home</a></li>
-        <li><a href="upload">About</a></li>
-        <li><a href="/text-samples">Text Samples</a></li> 
+        <li><a href="/about">About</a></li>
+        <li><a href="/textSamples">Text Samples</a></li> 
         <li><a href="/login_view">Login</a></li> 
         <li><a href="/register">Signup</a></li> 
-        <li><a href="/logout">Logout</a></li>
+        <li><a href="/">Logout</a></li>
       </ul>
     </div>
   </nav>
-  <div class="logo">
-    <img src="{% static 'eye.png' %}" alt="Eye">
-    <label><b>Handwritten Text Detector</b></label>
-  </div>
-  <p>Upload an image here:</p>
-  <div class="button-class">
-    <form action="/upload" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Upload</button>
-    </form>
-    {% if success %}
-      <p>Upload successful!</p>
-    {% endif %}
-  </div>
-
-  {% block body %}
   {% endblock %}
+  
+  <!-- Define blocks that can be overridden in child templates -->
+  {% block content %}
+  {% endblock %}
+
+
+  <p>hello</p>
 </body>
-</html> 
+</html>

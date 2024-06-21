@@ -57,3 +57,30 @@ def login_view(request):
 
 def index(request):
     return render(request, 'index.html')
+
+
+# to upload image
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import ImageUploadForm
+from .models import UploadedImage
+
+def textSamples(request):
+    if request.method == 'POST':
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Image uploaded successfully!')
+            return redirect('textSamples')
+        else:
+            messages.error(request, 'Failed to upload image. Please try again.')
+    else:
+        form = ImageUploadForm()
+        images = UploadedImage.objects.all()
+    return render(request, 'textSamples.html', {'form': form, 'images': images})
+
+
+
+
+def about(request):
+    return render(request, 'about.html')
